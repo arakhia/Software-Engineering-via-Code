@@ -139,12 +139,62 @@ public class Rectangle extends Shape {
 <br>
 
 ## Liskov Substitution Principle
-According to Design Principles and Design Patterns Paper by Robert C. Martin, Liskov principle defined as 
+According to Design Principles and Design Patterns Paper by Robert C. Martin, Liskov principle is
 ```
 Derived classes should be substitutable for their base classes. That is, a user of a base class should continue to function properly if a derivative of that base class is passed to it.
 ```
 
 To give clear idea about the principle, lets take the following example
 ```
+public abstract class Student {
+    // variables of Student class gois here
 
+    public abstract int getStudentRequiredHours(int id);
+}
+
+
+public class FullTimeStudent extends Student {
+
+    @Override
+    public int getStudentRequiredHours(int id)
+    {
+        // logic goes hete
+    }
+}
+
+public class PartTimeStudent extends Student {
+
+    @Override
+    public int getStudentRequiredHours(int id)
+    {
+        // logic goes hete
+    }
+}
+
+public class VisitorStudent extends Student {
+
+    @Override
+    public int getStudentRequiredHours(int id)
+    {
+        // lets assume a visitor student isn't included in the required hours
+        // so here will either will handle the case manually or throw exception
+    }
+
+}
+
+public class DemoStudent {
+    Student student1 = new FullTimeStudent();
+    Student student2 = new PartTimeStudent();
+
+    print(student1.getStudentRequiredHours().toString());
+    // print 15
+    print(student2.getStudentRequiredHours().toString());
+    // print 10
+
+    Student student3 = new VisitorStudent();
+    print(student3.getStudentRequiredHours().toString());
+    // will throw exception
+}
 ```
+
+In the previous example FullTime & PartTime students have required hours, but VisitorStudent doesn't. So when we subtituted VisitorStudent as a derived class of Student class with the method getStudentRequiredHours(), it didn't perform will and hence this is a violation for Liskov Principle.
