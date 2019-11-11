@@ -138,4 +138,13 @@ public class Rectangle extends Shape {
 
 <br>
 
+## Liskov Substitution Principle
+According to Design Principles and Design Patterns Paper by Robert C. Martin, Liskov principle defined as 
+```
+Derived classes should be substitutable for their base classes. That is, a user of a base class should continue to function properly if a derivative of that base class is passed to it.
+```
 
+To give clear idea about the principle, lets take the following example
+```
+
+```
