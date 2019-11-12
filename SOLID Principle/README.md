@@ -1,4 +1,4 @@
-# SOLID Principle
+# SOLID Principles
 
 SOLID is an acronym for
 <br>
@@ -8,9 +8,9 @@ O &nbsp; => Open-closed Principle
 <br>
 L &nbsp; => Liskov Substitution Principle
 <br>
-I &nbsp;  => Interface Segregation
+I &nbsp;  => Interface Segregation Principle
 <br>
-D &nbsp;  => Dependency Inversion
+D &nbsp;  => Dependency Inversion Principle
 
 <br>
 
@@ -200,9 +200,40 @@ public class DemoStudent {
 In the previous example FullTime & PartTime students have required hours, but VisitorStudent doesn't. So when we subtituted VisitorStudent as a derived class of Student class with the method getStudentRequiredHours(), it didn't perform as expected and hence this is a violation for Liskov Principle.
 
 ### Solution
-A proposed solution to this probel is by creating two interfaces, one will be a general for All types of Students and the other one is going to have function(s) for specific types of Students, in our example here getStudentRequiredHours().
+A proposed solution to this probel is by creating two interfaces, one will be a general for All types of Students and the other one is going to have function(s) for specific types of Students, in our example here getStudentRequiredHours(). Check the following
+
+```
+public interface StudentInterface {
+
+    public void getStudentInfo();
+}
+
+public interface PermenentStudentInterface {
+
+    public viod getStudentRequiredHours();
+}
+
+public class FullTimeStudent implements StudentInterface, PermenentStudentInterface {
+    
+    public void getStudentInfo(){
+        // get info logic
+    }
+
+    public viod getStudentRequiredHours(){
+        // get student houd logic
+    }
+}
+
+public class VisitorStudent implements StudentInterface {
+
+    public void getStudentInfo(){
+        // get info logic
+    }
+}
+```
+
 <br>
-* Note: Most of Classes Design problems can be solved by Interface, Interfaces act as contract between classes.
+* Note: Most of Design problems can be solved by Interface, Interfaces act as contract between classes.
 
 <br>
 
@@ -238,7 +269,7 @@ public class VisitorStudent implements StudentInterface {
 }
 ```
 
-In the above example, you forced VisitorStudent to implement getStudentRequiredHours (which they don't need) and that breaks the Interface Segregation Principle, so to solve this you have to create another interface, check this
+In the above example, you forced VisitorStudent to implement getStudentRequiredHours (which is not used) and that breaks the Interface Segregation Principle, so to solve this you have to create another interface, check this code
 
 ### Solution
 ```
@@ -271,5 +302,12 @@ public class VisitorStudent implements StudentInterface {
 }
 ```
 
+<br>
+
+## Dependency Inversion Principle
+According to the same paper, Design Principles and Design Patterns Paper, this principle mean 
+"Depend upon Abstractions. Do not depend upon concretions"
+<br>
+Simple meaning for this is that low level classes should depend on high level classes or abstract classes.
 
 
