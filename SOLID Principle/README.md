@@ -197,4 +197,4 @@ public class DemoStudent {
 }
 ```
 
-In the previous example FullTime & PartTime students have required hours, but VisitorStudent doesn't. So when we subtituted VisitorStudent as a derived class of Student class with the method getStudentRequiredHours(), it didn't perform will and hence this is a violation for Liskov Principle.
+In the previous example FullTime & PartTime students have required hours, but VisitorStudent doesn't. So when we subtituted VisitorStudent as a derived class of Student class with the method getStudentRequiredHours(), it didn't perform as expected and hence this is a violation for Liskov Principle.
