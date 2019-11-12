@@ -198,3 +198,78 @@ public class DemoStudent {
 ```
 
 In the previous example FullTime & PartTime students have required hours, but VisitorStudent doesn't. So when we subtituted VisitorStudent as a derived class of Student class with the method getStudentRequiredHours(), it didn't perform as expected and hence this is a violation for Liskov Principle.
+
+### Solution
+A proposed solution to this probel is by creating two interfaces, one will be a general for All types of Students and the other one is going to have function(s) for specific types of Students, in our example here getStudentRequiredHours().
+<br>
+* Note: Most of Classes Design problems can be solved by Interface, Interfaces act as contract between classes.
+
+<br>
+
+## Interface Segregation Principle
+This is another simple principle which based on seperation of interfaces based on their usage. In another words, client classes should not implement methods that they don't use. Therefore, break the interface into multiple interfaces and let each class implements the interfaces they need only. Check the following example
+
+```
+public interface StudentInterface {
+
+    public void getStudentInfo();
+
+    public viod getStudentRequiredHours();
+}
+
+public class FullTimeStudent implements StudentInterface {
+    public void getStudentInfo(){
+        // get info logic
+    }
+
+    public viod getStudentRequiredHours(){
+        // get student houd logic
+    }
+}
+
+public class VisitorStudent implements StudentInterface {
+    public void getStudentInfo(){
+        // get info logic
+    }
+
+    public viod getStudentRequiredHours(){
+        // do nothing
+    }
+}
+```
+
+In the above example, you forced VisitorStudent to implement getStudentRequiredHours (which they don't need) and that breaks the Interface Segregation Principle, so to solve this you have to create another interface, check this
+
+### Solution
+```
+public interface StudentInterface {
+
+    public void getStudentInfo();
+}
+
+public interface PermenentStudentInterface {
+
+    public viod getStudentRequiredHours();
+}
+
+public class FullTimeStudent implements StudentInterface, PermenentStudentInterface {
+    
+    public void getStudentInfo(){
+        // get info logic
+    }
+
+    public viod getStudentRequiredHours(){
+        // get student houd logic
+    }
+}
+
+public class VisitorStudent implements StudentInterface {
+
+    public void getStudentInfo(){
+        // get info logic
+    }
+}
+```
+
+
+
